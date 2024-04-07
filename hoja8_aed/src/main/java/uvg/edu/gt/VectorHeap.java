@@ -136,4 +136,9 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
         return data.size();
     }
 
+    @Override
+    public String toString() {
+        return data.toString();
+    }
+
 }

@@ -17,7 +17,7 @@ public class Main {
             System.out.println("Bienvenido al sistema de atención de emergencias");
             System.out.println("1. Ingresar paciente");
             System.out.println("2. Atender paciente");
-            System.out.println("3. Guardar pacientes en archivo");
+            System.out.println("3. Ver pacientes en espera");
             System.out.println("4. Salir");
             System.out.println("Ingrese la opción deseada: ");
             int opcion = sc.nextInt();
@@ -30,7 +30,8 @@ public class Main {
                     atenderPaciente();
                     break;
                 case 3:
-                    guardarPacientesTxt();
+                    System.out.println("Pacientes en espera: " + colaDeEmergenciaVectorHeap);
+                    System.out.println("Pacientes en espera: " + colaDeEmergenciaPriorityQueue);
                     break;
                 case 4:
                     menu = false;
@@ -118,21 +119,6 @@ public class Main {
             scannerArchivo.close();
         } catch (FileNotFoundException e) {
             System.out.println("Archivo no encontrado: " + rutaArchivo);
-        }
-    }
-
-    private static void guardarPacientesTxt() {
-        try {
-            FileWriter writer = new FileWriter("pacientes.txt", false); // false para sobrescribir el archivo
-    
-            // Suponiendo que quieras guardar los pacientes de la cola PriorityQueue
-            for(Paciente paciente : colaDeEmergenciaPriorityQueue) {
-                writer.write(paciente.getNombre() + ", " + paciente.getSintoma() + ", " + paciente.getCodigoEmergencia() + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Ocurrió un error al escribir en el archivo.");
-            e.printStackTrace();
         }
     }
     
