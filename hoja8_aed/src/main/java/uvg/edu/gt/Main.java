@@ -6,10 +6,24 @@ import java.util.PriorityQueue;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Clase principal que simula un sistema de atención de emergencias en un hospital.
+ * Permite la gestión de pacientes mediante una cola de prioridad, ofreciendo funcionalidades
+ * para agregar, atender y listar pacientes en espera, basándose en su prioridad de atención.
+ * Nicolás Concuá
+ * 23197
+ * Hoja de trabajo 8
+ */
 public class Main {
     private static Scanner sc = new Scanner(System.in);
     private static VectorHeap<Paciente> colaDeEmergenciaVectorHeap = new VectorHeap<>();
     private static PriorityQueue<Paciente> colaDeEmergenciaPriorityQueue = new PriorityQueue<>();
+
+    /**
+     * Método principal que ejecuta el menú del sistema de atención de emergencias.
+     * @param args Argumentos de línea de comando (no utilizados).
+     */
+
     public static void main(String[] args) {
         boolean menu = true;
         cargarTxt("pacientes.txt");
@@ -43,6 +57,10 @@ public class Main {
         }
     }
 
+    /**
+     * Método para agregar un nuevo paciente al sistema. Solicita al usuario ingresar los datos
+     * del paciente y lo añade a la cola de emergencia.
+     */
     private static void agregarPaciente() {
         System.out.print("Ingrese nombre del paciente: ");
         sc.nextLine(); 
@@ -70,6 +88,11 @@ public class Main {
         }
     }
 
+    /**
+     * Método que permite atender al paciente con mayor prioridad según el método de cola seleccionado.
+     * Presenta al usuario las opciones entre usar VectorHeap o PriorityQueue y procede a atender
+     * al paciente correspondiente.
+     */
     private static void atenderPaciente() {
         System.out.println("¿Con qué método desea trabajar?");
         System.out.println("1. VectorHeap");
@@ -100,6 +123,11 @@ public class Main {
         }
 }
 
+    /**
+     * Carga los pacientes desde un archivo de texto a las colas de emergencia.
+     * Lee el archivo especificado y añade cada paciente encontrado a las colas de prioridad.
+     * @param rutaArchivo Ruta al archivo de texto que contiene los datos de los pacientes.
+     */
     private static void cargarTxt(String rutaArchivo) {
         File archivo = new File(rutaArchivo);
         try {
